@@ -16,7 +16,7 @@ def generate_maze():
     print(maze)
 
 
-    def carve_path(x, y):
+    def path_finder(x, y):
         maze[x][y] = 1
         path.append((x, y))
         if (x, y) == (N - 1, N - 1):
@@ -33,19 +33,19 @@ def generate_maze():
             elif direction == 'L':
                 new_x, new_y = x, y - 1
             if 0 <= new_x < N and 0 <= new_y < N and maze[new_x][new_y] == 0:
-                if carve_path(new_x, new_y):
+                if path_finder(new_x, new_y):
                     return True
 
         return False
 
-    carve_path(0, 0)
+    path_finder(0, 0)
 
 
     return maze
 
 
 # Перевірка, чи можна перейти до клітинки
-def is_safe(maze, x, y):
+def move_is_safe(maze, x, y):
     return 0 <= x < N and 0 <= y < N and maze[x][y] == 1
 
 
@@ -81,7 +81,7 @@ def index():
             message = "Невірний вибір! Виберіть 'Вліво', 'Вправо', 'Вгору' або 'Вниз'."
             return render_template('index.html', maze=maze, position=session['position'], message=message, N=N)
 
-        if is_safe(maze, new_x, new_y):
+        if move_is_safe(maze, new_x, new_y):
             session['position'] = [new_x, new_y]
             position = session['position']
             message = f"Ви просунулись на клітинку {direction}."

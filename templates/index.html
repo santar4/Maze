@@ -32,7 +32,7 @@
                 </div>
             {% endfor %}
         </div>
-        <div class="controls">
+        <div class="directions">
             <form method="POST">
                 <button type="submit" name="move" value="L">Вліво</button>
                 <button type="submit" name="move" value="R">Вправо</button>
@@ -41,7 +41,7 @@
             </form>
         </div>
         <form action="{{ url_for('reset') }}">
-            <button type="submit" class="reset-btn">Грати Знову</button>
+            <button type="submit" class="reset_game">Грати Знову</button>
         </form>
     </div>
 </body>

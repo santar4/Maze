@@ -53,7 +53,7 @@ h1 {
     color: black;
 }
 
-.controls {
+.directions {
     margin-top: 20px;
 }
 
@@ -72,12 +72,12 @@ button:hover {
     background-color: #004080;
 }
 
-.reset-btn {
+.reset_game {
     background-color: #ff6600;
     margin-top: 20px;
 }
 
-.reset-btn:hover {
+.reset_game:hover {
     background-color: #ff3300;
 }
 
