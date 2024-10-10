@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Гра "Лабіринт"</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="game-container">
+        <h1>Гра "Лабіринт"</h1>
+        <p>Ваше завдання - знайти вихід. Вихід знаходиться в правому нижньому куті.</p>
+        <p>{{ message }}</p>
+        <div class="maze">
+            {% for row_index, row in enumerate(maze) %}
+                <div class="row">
+                    {% for col_index, cell in enumerate(row) %}
+                        <div class="cell
+                            {% if position == [row_index, col_index] %} player {% endif %}
+                            {% if row_index == N-1 and col_index == N-1 %} exit {% endif %}
+                            {% if cell == 0 %} wall {% endif %}
+                        ">
+                            {% if position == [row_index, col_index] %}
+                                P
+                            {% elif row_index == N-1 and col_index == N-1 %}
+                                E
+                            {% else %}
+                                {{ cell }}
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="controls">
+            <form method="POST">
+                <button type="submit" name="move" value="L">Вліво</button>
+                <button type="submit" name="move" value="R">Вправо</button>
+                <button type="submit" name="move" value="U">Вгору</button>
+                <button type="submit" name="move" value="D">Вниз</button>
+            </form>
+        </div>
+        <form action="{{ url_for('reset') }}">
+            <button type="submit" class="reset-btn">Грати Знову</button>
+        </form>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
